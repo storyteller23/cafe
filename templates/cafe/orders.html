@@ -1,0 +1,32 @@
+{% extends "cafe/base.html" %}
+
+{% block title %}Заказы{% endblock %}
+{% block content %}
+<div class="container pt-5">
+    <h1 class="mt-5">Заказы</h1>
+    <table class="table m-2">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Имя клиента</th>
+                <th scope="col">Дата создания</th>
+                <th scope="col">Блюда</th>
+                <th scope="col">Обслуживающий сотрудник</th>
+                <th scope="col">Итоговая цена</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <th scope="row">{{ order.id }}</th>
+                <td>{{ order.client_name }}</td>
+                <td>{{ order.created_time }}</td>
+                <td>{{ order.dishes.all|join:", " }}</td>
+                <td>{{ order.served_employee }}</td>
+                <td>{{ order.total_price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

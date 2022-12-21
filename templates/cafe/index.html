@@ -1,0 +1,27 @@
+{% extends "cafe/base.html" %}
+
+{% block title %}Главная{% endblock %}
+{% block content %}
+<div class="container pt-5">
+
+    <h1 class="mt-5">Меню</h1>
+    <table class="table m-2">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Название блюда</th>
+                <th scope="col">Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for el in menu %}
+            <tr>
+                <th scope="row">{{ el.id }}</th>
+                <td>{{ el.dish_name }}</td>
+                <td>{{ el.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
