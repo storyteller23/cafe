@@ -4,7 +4,7 @@ from .models import Order, Employee, Position
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ('client_name', 'dishes', 'served_employee', 'total_price')
+        fields = ('client_name', 'dishes', 'served_employee')
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

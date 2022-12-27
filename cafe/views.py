@@ -19,7 +19,15 @@ def create_order(request):
     if request.method == 'POST':
         form = OrderForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            dishes = form.cleaned_data.get("dishes")
+            client_name = form.cleaned_data.get("client_name")
+            served_employee = form.cleaned_data.get("served_employee")
+            total_price = 0
+            for dish in dishes:
+                total_price += dish.price
+            order = Order(client_name=client_name, served_employee=served_employee, total_price=total_price)
+            order.save()
+            order.dishes.set(dishes)
             return redirect('/orders')
     else:
         form = OrderForm()
